@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("Logout", "Logout");
+}
+else
+{
+    @Html.ActionLink("Login", "Login");
+}
+
+<div class="jumbotron">
+    <h1>Тестовое приложение для проверки смены языка</h1>
+    <p class="lead">Какой-то интересный текст на каком-то языке</p>
+</div>
