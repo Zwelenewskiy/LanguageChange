@@ -24,7 +24,7 @@ namespace LanguageChange.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            return View(new UserLogin());
         }
 
         [HttpPost]
