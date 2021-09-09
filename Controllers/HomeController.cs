@@ -66,7 +66,7 @@ namespace LanguageChange.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            GlobalHelper.lang = "en";
+            //GlobalHelper.lang = "en";
             return RedirectToAction("Index", "Home");
         }
     }
