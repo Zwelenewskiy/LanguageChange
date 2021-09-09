@@ -1,17 +1,19 @@
-﻿@{
-    ViewBag.Title = "Авторизация";
+﻿@using LanguageChange.Models
+
+@{
+    ViewBag.Title = GlobalHelper.GetTranslate("Home", "Авторизация");
 }
 
 @if (User.Identity.IsAuthenticated)
 {
-    @Html.ActionLink("Выйти", "Logout");
+    @Html.ActionLink(GlobalHelper.GetTranslate("Home", "Выйти"), "Logout");
 }
 else
 {
-    @Html.ActionLink("Авторизация", "Login");
+    @Html.ActionLink(GlobalHelper.GetTranslate("Home", "Авторизация"), "Login");
 }
 
 <div class="jumbotron">
-    <h1>Тестовое приложение для проверки смены языка</h1>
-    <p class="lead">Какой-то важный текст на каком-то языке</p>
+    <h1>@GlobalHelper.GetTranslate("Home", "Тестовое приложение для проверки смены языка")</h1>
+    <p class="lead">@GlobalHelper.GetTranslate("Home", "Какой-то важный текст на каком-то языке")</p>
 </div>

@@ -46,6 +46,14 @@ namespace LanguageChange.Controllers
                     }
                     else
                     {
+                        GlobalHelper.lang = user.Lang;
+
+                        /*var cookie = new HttpCookie("Language");
+                        cookie["lang"] = user.Lang;
+                        GlobalHelper.lang = user.Lang;
+
+                        Response.Cookies.Add(cookie);*/
+
                         FormsAuthentication.SetAuthCookie(model.ID.ToString(), true);
                         return RedirectToAction("Index", "Home");
                     }
@@ -58,6 +66,7 @@ namespace LanguageChange.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            GlobalHelper.lang = "en";
             return RedirectToAction("Index", "Home");
         }
     }

@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using LanguageChange.Models
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+    <title>@GlobalHelper.GetTranslate("Shared", ViewBag.Title)</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -22,7 +24,7 @@
                 <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                        <li>@Html.ActionLink(@GlobalHelper.GetTranslate("Shared", "Домашняя страница"), "Index", "Home")</li>
                     }
                 </ul>
             </div>
@@ -32,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Никакие права не защищены</p>
+            <p>&copy; @DateTime.Now.Year - @GlobalHelper.GetTranslate("Shared", "Никакие права не защищены")</p>
         </footer>
     </div>
 

@@ -13,17 +13,7 @@ namespace LanguageChange
     {
         protected void Application_Start()
         {
-            
-
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"content\Translation\Home\Index.csv");
-            string tmp = null;
-            using (StreamReader file = new StreamReader(path, Encoding.Default))
-            {
-                while ((tmp = file.ReadLine()) != null)
-                {
-                    
-                }
-            }
+            GlobalHelper.ReadTranslationFiles();
 
 
             Database.SetInitializer(new UserInitializer());

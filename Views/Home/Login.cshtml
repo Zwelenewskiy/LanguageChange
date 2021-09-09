@@ -1,38 +1,39 @@
-﻿@model LanguageChange.Models.UserLogin
+﻿@using LanguageChange.Models
+@model LanguageChange.Models.UserLogin
 
 @{
-    ViewBag.Title = "Авторизация";
+    ViewBag.Title = GlobalHelper.GetTranslate("Home", "Авторизация");
 }
 
-<h2>Авторизация</h2>
+<h2>@GlobalHelper.GetTranslate("Home", "Авторизация")</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken();
 
-<div class="form-horizontal">
-    @Html.ValidationSummary(true)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Login)
-            @Html.ValidationMessageFor(model => model.Login)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Login)
+                @Html.ValidationMessageFor(model => model.Login)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@GlobalHelper.GetTranslate("Home", "Авторизация")" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password)
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Авторизация" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
