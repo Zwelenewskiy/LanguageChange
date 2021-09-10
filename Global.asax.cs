@@ -13,8 +13,17 @@ namespace LanguageChange
     {
         protected void Application_Start()
         {
-            GlobalHelper.ReadTranslationFiles();
+            var error = GlobalHelper.ReadTranslationFiles();
+            if (error == null)
+            {
+                //OK
+            }
+            else
+            {
+                //ERROR
+            }
 
+            //TranslateFileLoadScheduler.Start();
 
             Database.SetInitializer(new UserInitializer());
 
