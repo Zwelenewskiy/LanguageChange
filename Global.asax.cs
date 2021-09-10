@@ -1,8 +1,5 @@
 using LanguageChange.Models;
-using System;
 using System.Data.Entity;
-using System.IO;
-using System.Text;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -23,7 +20,7 @@ namespace LanguageChange
                 //ERROR
             }
 
-            //TranslateFileLoadScheduler.Start();
+            TranslateFileLoadScheduler.Start();
 
             Database.SetInitializer(new UserInitializer());
 

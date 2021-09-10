@@ -1,9 +1,5 @@
 ﻿using Quartz;
 using Quartz.Impl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LanguageChange.Models
 {
@@ -20,7 +16,7 @@ namespace LanguageChange.Models
                 .WithIdentity("trigger1", "group1")     
                 .StartNow()                            
                 .WithSimpleSchedule(x => x            
-                    .WithIntervalInSeconds(20)         
+                    .WithIntervalInSeconds(GlobalHelper.UPDATE_READ_TIME)         
                     .RepeatForever())                   
                 .Build();                               
 

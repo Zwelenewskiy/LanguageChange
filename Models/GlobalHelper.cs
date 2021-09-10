@@ -10,6 +10,11 @@ namespace LanguageChange.Models
         private static string PATH_TO_LANG_FILES = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"content\Translation\");
 
         /// <summary>
+        /// Период обновления файлов с переводами (секунды)
+        /// </summary>
+        public const int UPDATE_READ_TIME = 30;
+
+        /// <summary>
         /// Текущий язык пользователя
         /// </summary>
         public static string lang = "en";//переделать в enum

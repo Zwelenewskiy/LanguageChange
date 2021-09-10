@@ -1,15 +1,7 @@
-﻿using Newtonsoft.Json;
-using OfficeOpenXml;
-using Quartz;
+﻿using Quartz;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace LanguageChange.Models
 {
@@ -17,7 +9,12 @@ namespace LanguageChange.Models
     {
         public async Task Execute(IJobExecutionContext context)
         {
-            await new Task(() => { });
+            Debug.WriteLine(DateTime.Now);
+
+            //await new Task(() => 
+            //{
+                GlobalHelper.ReadTranslationFiles();//Возврат ошибки??
+            //});
         }
     }
 }
