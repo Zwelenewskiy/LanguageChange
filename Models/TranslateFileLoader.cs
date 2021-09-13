@@ -13,7 +13,7 @@ namespace LanguageChange.Models
 
             //await new Task(() => 
             //{
-                GlobalHelper.ReadTranslationFiles();//Возврат ошибки??
+                //GlobalHelper.ReadTranslationFiles();//Возврат ошибки??
             //});
         }
     }

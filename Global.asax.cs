@@ -10,7 +10,9 @@ namespace LanguageChange
     {
         protected void Application_Start()
         {
-            var error = GlobalHelper.ReadTranslationFiles();
+            GlobalHelper.Init();
+
+            /*var error = GlobalHelper.ReadTranslationFiles();
             if (error == null)
             {
                 //OK
@@ -20,7 +22,7 @@ namespace LanguageChange
                 //ERROR
             }
 
-            TranslateFileLoadScheduler.Start();
+            TranslateFileLoadScheduler.Start();*/
 
             Database.SetInitializer(new UserInitializer());
 

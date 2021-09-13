@@ -16,7 +16,7 @@ namespace LanguageChange.Models
                 .WithIdentity("trigger1", "group1")     
                 .StartNow()                            
                 .WithSimpleSchedule(x => x            
-                    .WithIntervalInSeconds(GlobalHelper.UPDATE_READ_TIME)         
+                    //.WithIntervalInSeconds(GlobalHelper.UPDATE_READ_TIME)         
                     .RepeatForever())                   
                 .Build();                               
 

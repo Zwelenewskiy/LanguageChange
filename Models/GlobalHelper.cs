@@ -1,7 +1,9 @@
 ﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace LanguageChange.Models
 {    
@@ -10,9 +12,9 @@ namespace LanguageChange.Models
         private static string PATH_TO_LANG_FILES = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"content\Translation\");
 
         /// <summary>
-        /// Период обновления файлов с переводами (секунды)
+        /// Период обновления файлов с переводами (минуты)
         /// </summary>
-        public const int UPDATE_READ_TIME = 30;
+        public const double UPDATE_READ_TIME = 20;
 
         /// <summary>
         /// Текущий язык пользователя
@@ -24,6 +26,20 @@ namespace LanguageChange.Models
         /// controller -> text -> lang
         /// </summary>
         private static SortedList<string, SortedList<string, SortedList<string, string>>> text_to_lang { get; set; }
+
+        public static void Init()
+        {
+            ThreadPool.QueueUserWorkItem(DoTranslate);
+        }
+
+        private static void DoTranslate(object state = null)
+        {
+            while (true)
+            {
+                ReadTranslationFiles();
+                Thread.Sleep(TimeSpan.FromSeconds(UPDATE_READ_TIME));
+            }
+        }
 
         public static string GetTranslate(string controller_name, string text)
         {
@@ -44,11 +60,12 @@ namespace LanguageChange.Models
         /// Считывает файлы с переводами текстов для страниц
         /// </summary>
         /// <returns>Произошедшая ошибка</returns>
-        public static Exception ReadTranslationFiles()
+        private static Exception ReadTranslationFiles()
         {
             try
             {
-                //text_to_lang = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
+                Debug.WriteLine(DateTime.Now);
+
                 text_to_lang = new SortedList<string, SortedList<string, SortedList<string, string>>>();
 
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PATH_TO_LANG_FILES);
