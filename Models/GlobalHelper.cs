@@ -23,7 +23,7 @@ namespace LanguageChange.Models
         /// Хранит переводы текста для страниц:
         /// controller -> text -> lang
         /// </summary>
-        private static Dictionary<string, Dictionary<string, Dictionary<string, string>>> text_to_lang { get; set; }
+        private static SortedList<string, SortedList<string, SortedList<string, string>>> text_to_lang { get; set; }
 
         public static string GetTranslate(string controller_name, string text)
         {
@@ -48,7 +48,8 @@ namespace LanguageChange.Models
         {
             try
             {
-                text_to_lang = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
+                //text_to_lang = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
+                text_to_lang = new SortedList<string, SortedList<string, SortedList<string, string>>>();
 
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PATH_TO_LANG_FILES);
                 string[] filles = Directory.GetFiles(path);
@@ -76,7 +77,7 @@ namespace LanguageChange.Models
                         }
 
                         string controller_name = Path.GetFileNameWithoutExtension(Path.GetFileName(f));
-                        text_to_lang[controller_name] = new Dictionary<string, Dictionary<string, string>>();
+                        text_to_lang[controller_name] = new SortedList<string, SortedList<string, string>>();
 
                         //проходимся по строкам
                         for (int row_num = 2; row_num <= ws.Dimension.End.Row; row_num++)
@@ -85,7 +86,7 @@ namespace LanguageChange.Models
 
                             if (!string.IsNullOrEmpty(word))
                             {
-                                text_to_lang[controller_name][word] = new Dictionary<string, string>();
+                                text_to_lang[controller_name][word] = new SortedList<string, string>();
 
                                 //для текущего слова добавляем перевод на текущий язык
                                 for (int col_num = 2; col_num <= lang_count + 1; col_num++)
