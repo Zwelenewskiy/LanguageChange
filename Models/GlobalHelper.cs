@@ -12,9 +12,9 @@ namespace LanguageChange.Models
         private static string PATH_TO_LANG_FILES = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"content\Translation\");
 
         /// <summary>
-        /// Период обновления файлов с переводами (минуты)
+        /// Период обновления файлов с переводами (секунды)
         /// </summary>
-        public const double UPDATE_READ_TIME = 20;
+        public static double update_read_time = 20;
 
         /// <summary>
         /// Текущий язык пользователя
@@ -29,6 +29,7 @@ namespace LanguageChange.Models
 
         public static void Init()
         {
+            update_read_time = Convert.ToDouble(System.Configuration.ConfigurationManager.AppSettings["UpdateReadTime"]);
             ThreadPool.QueueUserWorkItem(DoTranslate);
         }
 
@@ -37,7 +38,7 @@ namespace LanguageChange.Models
             while (true)
             {
                 ReadTranslationFiles();
-                Thread.Sleep(TimeSpan.FromSeconds(UPDATE_READ_TIME));
+                Thread.Sleep(TimeSpan.FromSeconds(update_read_time));
             }
         }
 
